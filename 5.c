@@ -12,7 +12,7 @@ void captura(int* matriz, int linha, int coluna){
 void multiplica(int* matriz, int linha, int coluna){
     for(int i=0;i<linha;i++){
         for(int j=0;j<coluna;j++){
-            *((matriz+i)+j) += 5;
+            *(matriz+(i*coluna)+j) *= 5;
         }
     }
 }
@@ -31,8 +31,8 @@ int main(){
     int row = 3;
     int col = 3;
 
-    captura(m, row, col);
-    print(m, row, col);
-    multiplica(m, row, col);
-    print(m, row, col);
+    captura(*m, row, col);
+    print(*m, row, col);
+    multiplica(*m, row, col);
+    print(*m, row, col);
 }
