@@ -1,27 +1,24 @@
 #include <stdio.h>
 
-void inicializa_1(int* vet, int tam, int valor){
+void inicializa(int* vet, int tam, int valor){
     for (int i = 0; i < tam; i++){
         vet[i] = valor; 
     }
 }
 
-void multiplica_menos_1(int* vet, int tam){
+void multiplica(int* vet, int tam){
     for (int i = 0; i < tam; i++){
         vet[i] *= - 1; 
     }
 }
 
-void inicializa_20(int* vet, int tam, int valor){
-    for (int i = 0; i < tam; i++){
-        vet[i] = 20; 
+void print(int* vet, int tam){
+    printf("[");
+    for(int i = 0; i < tam; i++){
+        printf("%d", vet[i]);
+        if(i < (tam-1)) printf(",");
     }
-}
-
-void multiplica_2(int* vet, int tam){
-    for (int i = 0; i < tam; i++){
-            vet[i] *= 2; 
-    }
+    printf("]\n");
 }
 
 int main(){
@@ -32,32 +29,12 @@ int main(){
     int valor2 = 20;
     int TAM2 = 5;
 
-    inicializa_1(vet1, TAM1, valor1);
-    printf("[");
-    for(int i = 0; i < 10; i++){
-        printf("%d", vet1[i]);
-        if(i < 9) printf(",");
-    }
-    printf("]\n");
-    multiplica_menos_1(vet1, TAM1);
-    printf("[");
-    for(int i = 0; i < 10; i++){
-        printf("%d", vet1[i]);
-        if(i < 9) printf(",");
-    }
-    printf("]\n");
-    inicializa_20(vet2, TAM2, valor2);
-    printf("[");
-    for (int i = 0; i < 5; i++){
-        printf("%d", vet2[i]);
-    if(i < 4) printf(",");
-    }
-    printf("]\n");
-    multiplica_2(vet2, TAM2);
-    printf("[");
-    for (int i = 0; i < 5; i++){
-        printf("%d", vet2[i]);
-    if(i < 4) printf(",");
-    }
-    printf("]\n");
+    inicializa(vet1, TAM1, valor1);
+    print(vet1, TAM1);
+    multiplica(vet1, TAM1);
+    print(vet1, TAM1);
+    inicializa(vet2, TAM2, valor2);
+    print(vet2, TAM2);
+    multiplica(vet2, TAM2);
+    print(vet2, TAM2);
 }
