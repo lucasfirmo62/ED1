@@ -18,7 +18,7 @@ void print(int* qtd){
 
 int main(){
 
-    char nome[] = {"meu nome é Serena van der Woodsen"};
+    char nome[] = {"Eu estudo na UTFPR"};
     int quantidade = 0;
     int tamanho = 50;
 

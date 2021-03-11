@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void copiar(int* tamanho, char* string, char* copia_string){
-    for(int i = 0; i < *tamanho; i++){
+    for(int i = 0; i < (*tamanho); i++){
         copia_string[i] = string[i];
     }
 }

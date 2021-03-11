@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-void vogais(int* qtd, int tam, char* string){
+void vogais(int* qtd, int* tam, char* string){
 
     int count = 0;
 
-    for(int i = 0; i < tam; i++){
+    for(int i = 0; i < (*tam); i++){
         if(string[i] == '\0'){
             break;
         }
@@ -22,7 +22,7 @@ void vogais(int* qtd, int tam, char* string){
 }
 
 void print(int* qtd){
-    printf("%d\n", *qtd);
+    printf("%d\n", (*qtd));
 }
 
 
@@ -32,7 +32,7 @@ int main(){
     int tamanho = 30;
     int quantidade = 0;
 
-    vogais(&quantidade, tamanho, frase);
+    vogais(&quantidade, &tamanho, frase);
     print(&quantidade);
 
 }
