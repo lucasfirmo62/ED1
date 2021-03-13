@@ -1,48 +1,57 @@
 #include <stdio.h>
-
-int orden_inversa(n){
-
-    int resultado;
-
-    if((n > 999) && (n < 9999)){
-
-        int n1 = n%10;
-        int n2 = n/10;
-        n1 = n1*1000;
-        int m1 = n2%10;
-        int m2 = n2/10;
-        m1 = m1*100;
-        int t1 = m2%10;
-        int t2 = m2/10;
-        t1 = t1*10;
-        resultado = n1 + m1 + t1 + t2;
+#include <math.h>
 
 
-    }else if((n > 99) && (n < 999)){
+int conta_digito(int n){
+    int i = 0;
 
-        int m1 = n%10;
-        int m2 = n/10;
-        m1 = m1*100;
-        int t1 = m2%10;
-        int t2 = m2/10;
-        t1 = t1*10;
-        resultado = m1 + t1 + t2;
-
-    }else if((n < 99) && (n > 9)){
-
-        int t1 = n%10;
-        int t2 = n/10;
-        t1 = t1*10;
-        resultado = t1 + t2;
-
+    while(n >= 1){
+        n = n/10;
+        i++;
     }
 
-    return resultado;
+    return i;
 }
 
 
-void orden_inversa1(){
+int orden_inversa(int n){
 
+    int cont;
+    cont = conta_digito(n);
+    int result = 0;
+    int div = (pow(10,cont-1));
+    int mult = 1;
+    int aux = 0;
+
+    while(div >= 1){
+        aux = n/div;
+        result += aux * mult;
+        n = n%div;
+        mult *= 10;
+        div = div/10;
+    }
+
+    return result;
+
+}
+
+
+void orden_inversa1(int n, int* resultado){
+
+    int cont;
+    cont = conta_digito(n);
+    *resultado = 0;
+    int div = (pow(10,cont-1));
+    int mult = 1;
+    int aux = 0;
+
+    while(div >= 1){
+        aux = n/div;
+        (*resultado) += aux * mult;
+        n = n%div;
+        mult *= 10;
+        div = div/10;
+    }
 
 }
 
@@ -51,10 +60,17 @@ void orden_inversa1(){
 int main(){
 
     int a = 923;
+    int b = 238823;
 
     int resultado;
     resultado = orden_inversa(a);
-
     printf("%d\n", resultado);
+    orden_inversa1(a, &resultado);
+    printf("%d\n", resultado);
+    resultado = orden_inversa(b);
+    printf("%d\n", resultado);
+    orden_inversa1(b, &resultado);
+    printf("%d\n", resultado);
+
 
 }

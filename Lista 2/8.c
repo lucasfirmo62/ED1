@@ -1,39 +1,34 @@
 #include <stdio.h>
 
-int ordenacao(){
-    
-}
-
-void ordenacao_p(int vetor1[], int tam1, int vetor2[], int tam2, int* vetor3, int tam3){
-    int aux;
-        aux = vetor1[i];
-    for(int i = 0; i < tam1; i++){
-        if(aux <= vetor1[i]){
-            vetor3[i] = vetor1[i];
-        }else if(){
+void ordenados_p(int* vet1, int* vet2, int size1, int size2, int* vet3){
+    int i, j, k;
+    int tam = size1 + size2;
+    for(i = 0, j = 0, k = 0; k < tam; k++){
+        if(vet1[i] <= vet2[j] && i < size1){
+            vet3[k] = vet1[i];
             i++;
+        }else{
+            vet3[k] = vet2[j];
+            j++; 
         }
-        
-    }
-    for(int i = 1; i < tam2; i++){
-        vetor3[i] = vetor2[i];
     }
 }
 
-void print(int vetor[8]){
-    for(int i = 0; i < 8; i++){
-        printf("%d", vetor[i]);
+void print(int* v3, int max){
+    printf("[");
+    for(int i = 0; i < max; i++){
+        printf(" %d ", v3[i]);
     }
+    printf("]\n");
 }
 
 int main(){
-    int t1 = 4, t2 = 4;
-    int vet1[4] = {1,2,3,4};
-    int vet2[4] = {5,6,7,8};
-    int t3 = t1 + t2;
-    int vet3[];
+    int v1[] = {1,2,3,4};
+    int v2[] = {-5,6,9,10};
+    int v3[8];
 
-    ordenacao_p(vet1, t1, vet2, t2, vet3, t3);
-    print(vet3);
-
+    ordenados_p(v1, v2, 4, 4, v3);
+    print(v3, 8);
+    
+    
 }
