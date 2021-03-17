@@ -29,7 +29,7 @@ int* clone(int vetor[], int tam, int* copia){
 }
 
 int main(){
-    int v[] = {1, 2, 3, 4};
+    int v[] = {1, -2, 54, -4};
     int result[4];
     int* v_copia[4];
 
