@@ -2,6 +2,9 @@
 #include <stdlib.h>
 
 void print(int* vetor, int tam){
+    if(tam < 0){
+        return;
+    }
     printf("[");
     for(int i = 0; i < tam; i++){
         printf("%d", vetor[i]);
@@ -19,6 +22,7 @@ int main(){
     *(v+4) = 5;
 
     print(v, 5);
+    print(v, 0);
 
     *(v) = -10;
     *(v+1) = 20;

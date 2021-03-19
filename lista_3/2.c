@@ -14,7 +14,7 @@ void print(int* vetor, int tam){
 void preencher_p(int** vetor, int tamanho){
     *vetor = (int*) calloc(tamanho, sizeof(int));
     for(int i = 0; i < tamanho; i++){
-        *(*vetor+i) = tamanho*(i);
+        *(*vetor+i) = rand()%1000;
     }
     
 }
@@ -22,7 +22,7 @@ void preencher_p(int** vetor, int tamanho){
 int* preencher(int tamanho){
     int* vetor = (int*) calloc(tamanho, sizeof(int));
     for(int i = 0; i < tamanho; i++){
-        *(vetor+i) = tamanho*(i);
+        *(vetor+i) = rand()%1000;
     }
     return vetor;
 }
@@ -40,5 +40,6 @@ int main(){
 
     free(v1);
     v1 = NULL;
-
+    free(v2);
+    v2 = NULL;
 }

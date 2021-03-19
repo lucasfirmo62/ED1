@@ -1,40 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print(int* copia, int tamanho){
+int* cloneA(int v[], int tam){
+    if(tam < 0){
+        return;
+    }
+    int* v_copia = (int*) calloc(tam, sizeof(int));
+    for(int i = 0; i < tam; i++){
+        *(v_copia) = v[i];
+    }
+    return v_copia;
+}
+
+void cloneB(int v[], int tam, int** v_copia){
+    if(tam < 0){
+        return;
+    }
+    *v_copia = (int*) calloc(tam, sizeof(int));
+    for(int i  = 0; i < tam; i++){
+        *(*v_copia+i) = v[i];
+    }
+}
+
+void print(int* vetor, int tam){
     printf("[");
-    for(int i = 0; i < tamanho; i++){
-        printf("%d", copia[i]);
-        if(i != tamanho-1) printf(", ");
+    for(int i = 0; i < tam; i++){
+        printf("%d", vetor[i]);
+        if(i != tam-1) printf(", ");
     }
     printf("]\n");
 }
 
-void clone_p(int vetor[], int tam, int* copia){
-    copia = (int*) calloc(tam ,sizeof(int));
-
-    for(int i = 0; i < tam; i++){
-        copia[i] = vetor[i];
-    }
-    print(copia, tam);
-}
-
-int* clone(int vetor[], int tam, int* copia){
-    copia = (int*) calloc(tam ,sizeof(int));
-
-    for(int i = 0; i < tam; i++){
-        copia[i] = vetor[i];
-    }
-    return copia;
-}
-
 int main(){
-    int v[] = {1, -2, 54, -4};
-    int result[4];
-    int* v_copia[4];
 
-    clone_p(v, 4, (int*) v_copia);
-    *v_copia = clone(v, 4, (int*) v_copia);
-    print(*v_copia, 4);
+    int v[5] = {1,2,3,4,5};
+    int *copia1, *copia2;
+
+    copia1 = cloneA(v, 5);
+    print(copia1, 5);
+    cloneB(v, 5, &copia2);
+    print(copia2, 5);
 
 }
