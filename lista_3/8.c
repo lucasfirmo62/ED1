@@ -23,12 +23,12 @@ void print(Aluno* alu){
 
 }
 
-float* gerador_notas(Aluno* a){
+float* gerador_notas(Aluno* x){
 
-    a->qtd_notas = rand()%8;
-    float* notas = (float*) calloc(a->qtd_notas, sizeof(float));
+    x->qtd_notas = rand()%8;
+    float* notas = (float*) calloc(x->qtd_notas, sizeof(float));
 
-    for(int i = 0; i < a->qtd_notas; i++){
+    for(int i = 0; i < x->qtd_notas; i++){
        notas[i] = rand()%10;
     }
     return notas;
@@ -37,6 +37,15 @@ float* gerador_notas(Aluno* a){
 Aluno* criar_aluno(){
     Aluno* alu = (Aluno*) malloc(sizeof(Aluno));
     return alu;
+}
+
+void destruidor_de_alunos(Aluno* x){
+    free(x->nota);
+    x->nota = NULL;
+
+    free(x);
+    x = NULL;
+
 }
 
 int main(){
@@ -60,6 +69,7 @@ int main(){
 
     print(b);
 
-    free(a);
-    free(b);
+    destruidor_de_alunos(a);
+    destruidor_de_alunos(b);
+
 }
