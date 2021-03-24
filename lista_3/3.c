@@ -3,7 +3,7 @@
 
 int* cloneA(int v[], int tam){
     if(tam < 0){
-        return;
+        return 0;
     }
     int* v_copia = (int*) calloc(tam, sizeof(int));
     for(int i = 0; i < tam; i++){

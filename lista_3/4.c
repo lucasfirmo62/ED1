@@ -26,8 +26,8 @@ int main(){
 
     int *v1 = vetor_aleatorio(10);
     print(v1, 10);
-    int *v2 = vetor_aleatorio(100);
-    print(v2, 100);
+    int *v2 = vetor_aleatorio(4);
+    print(v2, 4);
 
     free(v1);
     free(v2);
