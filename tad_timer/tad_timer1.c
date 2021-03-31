@@ -1,5 +1,11 @@
 #include "tad_time.h"
 
+typedef struct timer{
+    time_t inicio;
+    time_t fim;
+    time_t tempo_final;
+}Timer;
+
 Timer* timer_criar(){
     Timer* time = (Timer*) malloc(sizeof(Timer));
     return time;
@@ -13,12 +19,12 @@ void timer_desalocar(Timer** t){
 
 
 void timer_start(Timer* t){
-    t->inicio = clock();
+    time(&t->inicio);
 };
 
 
 void timer_stop(Timer* t){
-    t->fim = clock();
+    time(&t->fim);
 };
 
 

@@ -1,20 +1,13 @@
+#ifndef _TAD_TIMER_H_
+#define _TAD_TIMER_H_
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 
 
-/*******************************************************************
-*  DADOS
-*******************************************************************/
-typedef struct timer{
-    float inicio;
-    float fim;
-    float tempo_final;
-}Timer;
+typedef struct timer Timer;
 
-/*******************************************************************
-*  OPERACOES
-*******************************************************************/
 
 /**
  * Cria um timer
@@ -47,4 +40,4 @@ void timer_reset(Timer* t);
  */
 float timer_resultado(Timer* t);
 
-
+#endif

@@ -1,35 +1,35 @@
 #include "tad_time.h"
 
-Timer* timer_criar(){
-    Timer* time = (Timer*) malloc(sizeof(Timer));
-    return time;
-};
+typedef struct timer{
+  double inicio;
+  double fim;
+  double tempo_final;
+} Timer;
 
+Timer* timer_criar(){
+  Timer* time = (Timer*) malloc(sizeof(Timer));
+  return time;
+}
 
 void timer_desalocar(Timer** t){
-    free(*t);
-    *t = NULL;
-};
-
+  free(*t);
+  *t = NULL;
+}
 
 void timer_start(Timer* t){
-    t->inicio = clock();
-};
-
+  t->inicio = clock();
+}
 
 void timer_stop(Timer* t){
-    t->fim = clock();
-};
-
+  t->fim = clock();
+}
 
 void timer_reset(Timer* t){
-    t->inicio = 0;
-    t->fim = 0;
-    t->tempo_final = 0;
-};
-
+  t->inicio = 0;
+  t->fim = 0;
+}
 
 float timer_resultado(Timer* t){
-    t->tempo_final = (t->fim) - (t->inicio);
-    return t->tempo_final;
-};
+    t->tempo_final = (float)(t->fim - t->inicio)/CLOCKS_PER_SEC;
+  return t->tempo_final;
+}

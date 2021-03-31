@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <assert.h>
 #include "tad_teste.h"
 
 int main(){
@@ -15,9 +14,10 @@ int main(){
 
     teste_relatorio(t1);
     teste_relatorio(t2);
-    
+
     teste_desalocar(&t1);
     teste_desalocar(&t2);
 
     return 0;
+
 }

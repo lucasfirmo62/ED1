@@ -1,10 +1,5 @@
 #include "tad_teste.h"
 
-//incompleto
-
-
-
-
 typedef struct teste{
     char teste[100];
     int testes;
@@ -22,29 +17,36 @@ Teste* teste_criar(char* descricao){
 
     printf("%s\n", menssage->teste);
 
+    return menssage;
+
 };
 
 void teste_verificar(Teste* t, int condicao, char *mensagem){
 
-    (assert(condicao) == 0);
-        printf("[OK]", mensagem);
-        t->testes_true;
-
-    (assert(condicao) == 0);
-        printf("Erro: Teste para expressao", mensagem);
-        t->testes_false;
+    if(condicao == 1){
+        printf("%s [OK]", mensagem);
+        t->testes_true++;
+    }
+    else if(condicao == 0){
+        printf("Erro: %s Teste para expressao", mensagem);
+        t->testes_false++;
+    }
 
     t->testes++;
 
 };
+
 void teste_relatorio(Teste* t){
 
-    printf("Total = %d\n", t->testes);
-    printf("Passaram = %d\n", t->testes_true);
-    printf("Falharam = %d\n", t->testes_false);
+  printf("----------------------------------------------------\n");
+  printf("%s\n", t->teste);
+  printf("----------------------------------------------------\n");
 
-};
+  printf("Total    = %d\n", t->testes);
+  printf("Passaram    = %d\n", t->testes_true);
+  printf("Falharam    = %d\n", t->testes_false);
+}
 void teste_desalocar(Teste** t){
-    free(t);
-    t = NULL;
+    free(*t);
+    *t = NULL;
 };
