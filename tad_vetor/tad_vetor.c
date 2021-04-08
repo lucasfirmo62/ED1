@@ -10,16 +10,18 @@ typedef struct vetor{
 } Vetor;
 
 Vetor* vet_criar(int tam){
-    Vetor* vet = (Vetor*) calloc(tam, sizeof(Vetor));
+    Vetor* vet;
+    vet = (Vetor*) malloc(sizeof(Vetor));
+    vet->vetor = (int*) calloc(tam, sizeof(int));
+
+    vet->tam = tam;
     return vet;
 };
 
 
 bool vet_anexar(Vetor* v, int elemento){
 
-    v->vetor = &elemento;
-    printf("%d", *v->vetor);
-    v->qtd += 1;
+    v->vetor[v->qtd++] = elemento;
 
     return true;
 };
@@ -55,9 +57,20 @@ int vet_tamanho(Vetor* v){
 return true;
 };
 
-bool vet_elemento(Vetor* v, int posicao, int* saida);
+bool vet_elemento(Vetor* v, int posicao, int* saida){
+    *saida = v->vetor[posicao];
 
-int vet_posicao(Vetor* v, int elemento);
+    return true;
+};
+
+int vet_posicao(Vetor* v, int elemento){
+    int i = 0;
+    for(i = 0; i < v->qtd; i++){
+        if(v->vetor[i] == elemento) return i;
+    }
+
+    return -1;
+};
 
 int vet_imprimir(Vetor* v){
     printf("\n[");
@@ -69,25 +82,31 @@ int vet_imprimir(Vetor* v){
     return 0;
 };
 
-void vet_desalocar(Vetor* v);
+void vet_desalocar(Vetor* v){
+    free(v);
+    v = NULL;
+};
 
 bool vet_toString(Vetor* v, char* enderecoString){
-    if(!Verifica_Vetor(v)) return false;
-    int pos = 0;
-    int tam = (v->qtd*2)+1; //assim aloca espaço para os numeros, as chaves, o '\0' e para as virgulas
-    char temp[tam+1];
-    enderecoString[pos++] = '[';
-
-    for(int i = 0; i < v->qtd; i++){
-        int j = 0;
-        sprintf(&temp[j], "%d", v->vetor[i]);
-        while(temp[j] != '\0'){
-            enderecoString[pos++] = temp[j];
-            j++;
-        }
-        if(i < v->qtd-1)enderecoString[pos++] = ',';
-    }
-    enderecoString[pos++] = ']';
-    enderecoString[pos] = '\0';
-    return true;
-};
+  if(!v) return false;
+  if(v->qtd <= 0) return false;
+    
+  int pos = 0;
+  int tam = (v->qtd*2)+1; 
+  char temp[tam+1];
+  enderecoString[pos++] = '[';
+  
+  for(int i = 0; i < v->qtd; i++){
+      int j = 0;
+      sprintf(&temp[j], "%d", v->vetor[i]);
+      while(temp[j] != '\0'){
+          enderecoString[pos++] = temp[j];
+          j++;
+      }
+      if(i < v->qtd-1)enderecoString[pos++] = ',';
+  }
+  enderecoString[pos++] = ']';
+  enderecoString[pos] = '\0';
+  
+  return true;
+} 
