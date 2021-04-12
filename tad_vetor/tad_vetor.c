@@ -21,6 +21,8 @@ Vetor* vet_criar(int tam){
 
 bool vet_anexar(Vetor* v, int elemento){
 
+    v->qtd = 0;
+
     v->vetor[v->qtd++] = elemento;
 
     return true;
@@ -35,22 +37,37 @@ bool vet_inserir(Vetor* v, int elemento, int posicao){
 };
 
 bool vet_substituir(Vetor* v, int posicao, int novoElemento){
-    v->vetor = &novoElemento;
+    v->vetor[posicao] = novoElemento;
     return true;
 };
 
 bool vet_removerPosicao(Vetor* v, int posicao, int* endereco){
+
+
+  *endereco = v->vetor[posicao];
+
+  for(int i = posicao; i < v->qtd; i++){
+    v->vetor[i] = v->vetor[i+1];
+  }
     
-    endereco = v->vetor;
-    free(v->vetor);
-    return true;
 };
 
 int vet_removerElemento(Vetor* v, int elemento){
 
+    for(int i = 0; i < v->qtd; i++){
+        if(v->vetor[i] == elemento){
+        vet_removerPosicao(v, i, &elemento);
+        free(v->vetor[i]);
+        }
+
+    }
+
+
     free(v->vetor);
     v->vetor = NULL;
     return true;
+
+    v->qtd--;
 };
 
 int vet_tamanho(Vetor* v){

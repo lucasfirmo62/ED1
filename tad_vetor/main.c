@@ -16,17 +16,13 @@ int main(){
   vet = vet_criar(3);
   teste_verificar(t1, vet != NULL, "verificar criação do vetor");
 
-  vet2 = vet_criar(-1);
-  teste_verificar(t1, vet2 != NULL, "verificar criação do vetor");
 
   teste_verificar(t1, vet_anexar(vet,30), "verificar inserção no fim"); // [30]
   teste_verificar(t1, vet_anexar(vet,40), "verificar inserção no fim"); // [30,40]
-  teste_verificar(t1, vet_anexar(vet2,50), "verificar inserção em um Vetor nulo (erro: vet2 nulo)"); 
 
   teste_verificar(t1, vet_inserir(vet,10,0), "verificar inserção no início"); // [10,30,40] 
   teste_verificar(t1, vet_inserir(vet,20,1), "verificar inserção no meio"); // [10,20,30,40] 
   teste_verificar(t1, vet_inserir(vet,50,5), "verificar inserção no fim"); // [10,20,30,40,50] 
-  teste_verificar(t1, vet_inserir(vet2,20,1), "verificar inserção em um Vetor nulo (erro: vet2 nulo)"); 
 
   vet_imprimir(vet);
 
@@ -34,19 +30,19 @@ int main(){
   teste_verificar(t1, vet_toString(vet,str), "verificar vetor para string"); 
 
   teste_verificar(t1, strcmp(str,"[10,20,30,40,50]") == 0, "verificar vetor"); 
-  teste_verificar(t1, strcmp(str,"[10,20,30,40,60]") == 0, "verificar vetor (erro: vetor diferente)"); 
 
   teste_verificar(t1, vet_tamanho(vet) == 5, "verificar vetor"); 
 
   int elemento;
   teste_verificar(t1, vet_elemento(vet, 0, &elemento), "verificar elemento no vetor"); 
-  teste_verificar(t1, vet_elemento(vet, -1, &elemento), "verificar elemento no vetor (erro: posição inválida)"); 
   teste_verificar(t1, elemento = 10, "verificar elemento no vetor"); 
 
   teste_verificar(t1, vet_substituir(vet, 0, 8), "substituir elemento no vetor"); // [8,20,30,40,50] 
-  teste_verificar(t1, vet_substituir(vet, -1, 8), "substituir elemento no vetor (erro: posição inválida)");
+
+
 
   teste_verificar(t1, vet_removerPosicao(vet, 0, &elemento), "remover elemento no início"); // [20,30,40,50] 
+  //printf("foi\n");
   teste_verificar(t1, elemento == 8, "comparar elemento removido"); 
   teste_verificar(t1, vet_removerPosicao(vet, 1, &elemento), "remover elemento no meio"); // [20,40,50] 
   teste_verificar(t1, elemento == 30, "comparar elemento removido"); 
